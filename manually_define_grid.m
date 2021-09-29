@@ -1,6 +1,6 @@
 morph_mat_directory='D:\Milk desk\Dropbox\Harvard\Coloration_research\Drawer_result\tribal_wing-seg_matrices_Mar2020_final';
 Code_directory='D:\Milk desk\Dropbox\Harvard\Coloration_research\Multi_spectra_processing/shape_analysis_v3';
-spp_mat_directory='D:\Milk desk\Dropbox\Harvard\Coloration_research\Drawer_result\spp_matrices';
+% spp_mat_directory='D:\Milk desk\Dropbox\Harvard\Coloration_research\Drawer_result\spp_matrices';
 Result_directory=fullfile(Code_directory,'manually_defined_grids');
 % Turn off this warning "Warning: Image is too big to fit on screen; displaying at 33% "
 % To set the warning state, you must first know the message identifier for the one warning you want to enable. 
