@@ -1,10 +1,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Manual define grids based on a folder of promblematic images (jpg format)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-morph_mat_directory='..\tribal_wing-seg_matrices_Mar2020_final';
-Code_directory='../shape_analysis_v3';
-manual_grid_redo_directory='..\tribal_level_wing-grids_inspection\manual';
+morph_mat_directory='D:\Milk desk\Dropbox\Harvard\Coloration_research\Drawer_result\tribal_wing-seg_matrices_Mar2020_final';
+Code_directory='D:\Milk desk\Dropbox\Harvard\Coloration_research\Multi_spectra_processing/shape_analysis_v3';
+manual_grid_redo_directory='D:\Milk desk\Dropbox\Harvard\Coloration_research\Multi_spectra_photos\tribal_level_wing-grids_inspection\manual';
 numberOfIntervalDegree =5; %minimum is 3
 %%%%%%%%%%%%%%%%%%%%Specify only above%%%%%%%%%%%%%%%%%%%%
 
@@ -46,12 +45,11 @@ end
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Manual define grids based on a list of barcode
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Manual define grids based on a list of barcode (in txt format)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-morph_mat_directory='..\tribal_wing-seg_matrices_Mar2020_final';
-Code_directory='../shape_analysis_v3';
-listdir='..\tribal_level_wing-grids_inspection';
+morph_mat_directory='D:\Milk desk\Dropbox\Harvard\Coloration_research\Drawer_result\tribal_wing-seg_matrices_Mar2020_final';
+Code_directory='D:\Milk desk\Dropbox\Harvard\Coloration_research\Multi_spectra_processing/shape_analysis_v3';
+listdir='D:\Milk desk\Dropbox\Harvard\Coloration_research\Multi_spectra_photos\tribal_level_wing-grids_inspection';
 listfilename='tribal_level_wing-grids_inspection_not_yet_done_barcode_list.txt';
 numberOfIntervalDegree=5; %minimum is 3
 %%%%%%%%%%%%%%%%%%%%Specify only above%%%%%%%%%%%%%%%%%%%%
@@ -79,11 +77,10 @@ end
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%manually key in barcode
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Manual define grids based on a barcode being typed in
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-morph_mat_directory='..\tribal_wing-seg_matrices_Mar2020_final';
-Code_directory='../shape_analysis_v3';
+morph_mat_directory='D:\Milk desk\Dropbox\Harvard\Coloration_research\Drawer_result\tribal_wing-seg_matrices_Mar2020_final';
+Code_directory='D:\Milk desk\Dropbox\Harvard\Coloration_research\Multi_spectra_processing/shape_analysis_v3';
 %Input specific barcode
 barcodein='MCZ-ENT00210891'; %The barcode with problematic grids
 numberOfIntervalDegree=5; %minimum is 3

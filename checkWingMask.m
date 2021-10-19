@@ -1,4 +1,6 @@
 function outMask=checkWingMask(inMask, in_key, part)
+%Check if there is a problematic wing piece. If so, replace it with a
+%placeholder
     if nnz(inMask)<=10 %If one wing is missing, provide a fake one
         if part=='LF'
             keyPts=[in_key(7,:) ; in_key(2,:)];

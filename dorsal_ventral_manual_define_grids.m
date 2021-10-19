@@ -43,7 +43,7 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
     end
 
     %%
-    %derive the matchable side of images
+    %derive the corresponding images for both sides
     dorsal_seg=both_sides_morph{1}{1}{13};
     ventral_seg=both_sides_morph{2}{1}{13};
     ventral_seg_flip = flip(ventral_seg ,2); 
@@ -51,8 +51,6 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
     keyPts=cell(0,2);
     for sideID=1:2
         refPts=both_sides_morph{sideID}{1}{6};
-        segPts=refPts(1:6,:);
-        realCen=both_sides_morph{sideID}{1}{2};
         tipPts=both_sides_morph{sideID}{1}{5};
         keyPts{sideID}=[refPts;tipPts];
     end
@@ -63,8 +61,6 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
     ventral_key_flip0(:,1)=size(ventral_seg,2)+1-ventral_key(:,1);
     ventral_key_flip=[ventral_key_flip0(4,:);ventral_key_flip0(3,:);ventral_key_flip0(2,:);ventral_key_flip0(1,:);ventral_key_flip0(6,:);ventral_key_flip0(5,:);ventral_key_flip0(9,:);ventral_key_flip0(8,:);ventral_key_flip0(7,:);ventral_key_flip0(11,:);ventral_key_flip0(10,:)];
 
-    dorsal_scale=both_sides_morph{1}{1}{12};
-    ventral_scale=both_sides_morph{2}{1}{12};
     %Create potential intact wing region based on ventral-dorsal mapping
     disp('Begin to create potential wing area based on dosal-ventral sides mapping');
     
@@ -89,15 +85,14 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
     segLineRH=extractSegLineH(ventral_flip_wingRH,ventral_key_flip,'R');
 
     disp('The fore-hind wing joint lines are extracted from dosal and ventral sides');
-%     figure,imshow(dorsal_wingLF);hold on;
-%     plot(segLineLF(:,1),segLineLF(:,2),'r.');
-    % 
+    
+    %Scripts below are saved for debugging purpose
+    % figure,imshow(dorsal_wingLF);hold on;
+    % plot(segLineLF(:,1),segLineLF(:,2),'r.');
     % figure,imshow(wingRF);hold on;
     % plot(segLineRF(:,1),segLineRF(:,2),'r.');
-    % 
     % figure,imshow(wingLH);hold on;
     % plot(segLineLH(:,1),segLineLH(:,2),'r.');
-    % 
     % figure,imshow(wingRH);hold on;
     % plot(segLineRH(:,1),segLineRH(:,2),'r.');
 
@@ -107,6 +102,7 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
     segLineLF_ventral=projectSegLine(ventral_flip_wingLF, ventral_key_flip,segLineLF,'L');
     segLineRF_ventral=projectSegLine(ventral_flip_wingRF, ventral_key_flip,segLineRF,'R');
 
+%     Scripts below are saved for debugging purpose
 %     figure,imshow((ventral_seg_flip==1)+(ventral_seg_flip==2));hold on;
 %     plot(segLineLF_ventral(:,1),segLineLF_ventral(:,2),'r.');
 %     plot(segLineRF_ventral(:,1),segLineRF_ventral(:,2),'r.');
