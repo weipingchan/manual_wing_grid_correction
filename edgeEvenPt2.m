@@ -46,8 +46,7 @@ end
 [~,AdjInd] = unique(segEdgePts3,'rows'); 
 segEdgePts4=segEdgePts3(sort(AdjInd),:);
 
-%Randomly remove n points from the segment in order to make 'interparc'
-%work. (added April 18, 2020)
+%Randomly remove n points from the segment in order to make 'interparc' work.
 deleterown=0;
 while 1
     firstRow=segEdgePts4(1,:);
@@ -67,7 +66,5 @@ while 1
     end
 end
 
-%Nsec=16;
-% intPts0 = interparc(Nsec+1,segEdgePts(:,1),segEdgePts(:,2));
 intPts=[kPt1 ;intPts0(2:end-1,:); kPt2];
 end

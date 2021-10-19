@@ -6,6 +6,8 @@ ornamentRatio=1/350; %the ratio of objects' area to mask area exceeding this val
 
 figinsp=figure('visible', 'off');
 pairFig=imshowpair(wingLH+wingRH,refineAreaLH+refineAreaRH);
+
+% Scripts below are saved for debugging purpose
 % figure,imshowpair(wingLH+wingRH,refineAreaLH+refineAreaRH);hold on;
 % plot(regPtLH(:,1),regPtLH(:,2),'rO');
 % plot(regPtRH(:,1),regPtRH(:,2),'rO');
@@ -26,7 +28,7 @@ tipFNameList={'tip-LF','tip-RF'};
 [newFTipPts, newFwingRefPts]=manuallyDefineKeyRefPts3(wingLF+wingRF, wingLF+wingRF, tipFPts, tipFNameList, wingFPts, wingFPtNameList);
 
 %Hindwings
-wingHPts=[regPtLH(1,:) ; in_key(6,:) ; regPtRH(1,:) ; in_key(5,:)]; %Better not to adjust
+wingHPts=[regPtLH(1,:) ; in_key(6,:) ; regPtRH(1,:) ; in_key(5,:)];
 wingHPtNameList={'L-Hjoint', 'L-H&B',  'R-Hjoint', 'L-H&B'};
 tipHPts=[regPtLH(2:3,:) ; regPtRH(2:3,:)];
 tipHNameList={'tip-LH', 'side-LH', 'tip-RH', 'side-RH'};
@@ -60,7 +62,7 @@ gridsParameter{6}={refineAreaRH,new_regPtRH,reconstructRegPtRH};
 gridsParameter{7}=wingLH;
 gridsParameter{8}=wingRH;
 
-
+% %Scripts below are saved for debugging purpose
 % %Plot refined regions
 % figure,imshowpair(wingLH+wingRH,refineAreaLH+refineAreaRH);hold on;
 % plot(new_regPtLH(:,1),new_regPtLH(:,2),'rX');plot(new_regPtLH(:,1),new_regPtLH(:,2),'yO');

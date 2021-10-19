@@ -1,6 +1,5 @@
 function evenIntEdge=getEvenSpaceForGrid(seg4Pts,edgePt,numberOfIntervalDegree)
     numberOfInterval=2^numberOfIntervalDegree;
-
     kPts=seg4Pts(1:2,:);
     [segEdgePts1,intPts1] = edgeEvenPt2(edgePt,kPts,numberOfInterval);
     ointPts1=flip([intPts1(1,:);flip(intPts1(2:length(intPts1)-1,:),1);intPts1(length(intPts1),:)],2); %reoder points

@@ -1,12 +1,6 @@
 function outGridCen=generateGrid4centroid(inGrid)
-% inGrid=zeros(3,3,2);
-% inGrid(1,:,:)=[wingGrid(1,1,:);wingGrid(1,numberOfInterval/2+1,:) ; wingGrid(1,numberOfInterval+1,:)];
-% inGrid(2,:,:)=[wingGrid(numberOfInterval/2+1,1,:);wingGrid(numberOfInterval/2+1,numberOfInterval/2+1,:) ; wingGrid(numberOfInterval+1,numberOfInterval+1,:)];
-% inGrid(3,:,:)=[wingGrid(numberOfInterval+1,1,:);wingGrid(numberOfInterval+1,numberOfInterval/2+1,:) ; wingGrid(numberOfInterval+1,numberOfInterval+1,:)];
-
 outGridCen=zeros(2,2,2);
 
-% itr=2;
 %UL corner
 cendat=[inGrid(1,1,:) ; inGrid(1,2,:) ; inGrid(2,2,:) ; inGrid(2,1,:)];
 cen=mean(cendat);

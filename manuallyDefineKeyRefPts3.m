@@ -1,6 +1,4 @@
 function [newTipList,newRefList]=manuallyDefineKeyRefPts3(ref, refShow, tipPts,tipList,refPts,ptNameList)
-    %ptNameList= {'L-F&H','L-F&B','R-F&B','R-F&H','R-H&B','L-H&B'};
-    %tipList={'tip-LF','tip-RF'};
     %     {'Left corner dividing Fore & Hing Wings','Left corner dividing Fore Wing & Body','Right corner dividing  Fore Wing & Body',...
     %         'Right corner dividing Fore & Hing Wings','Right corner dividing Hind Wing & Body','Left corner dividing Hind Wing & Body'};
     [B0,~]=bwboundaries(ref);

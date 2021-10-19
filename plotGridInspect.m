@@ -1,12 +1,4 @@
 function plotGridInspect(wingMaskLF,wingMaskRF,wingMaskLH,wingMaskRH,nullArea_L,nullArea_R,gridsParameter)
-% wingMaskLF=potentialWingMask_LF_ventral;
-% wingMaskRF=potentialWingMask_RF_ventral;
-% wingMaskLH=ventral_seg==3;
-% wingMaskRH=ventral_seg==4;
-% nullArea_L=nullArea_LF_ventral;
-% nullArea_R=nullArea_RF_ventral;
-% gridsParameter=gridsParameter_ventral;
-
 plotbaseImg=wingMaskLF+wingMaskRF+wingMaskLH+wingMaskRH;
 plotrefineImg=nullArea_L+nullArea_R+gridsParameter{5}{1}+gridsParameter{6}{1};
 seg4PtsAll=[gridsParameter{1}{1} ; gridsParameter{2}{1} ; gridsParameter{3}{1} ; gridsParameter{4}{1}];

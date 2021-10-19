@@ -4,11 +4,6 @@ function segLine_dorsal=projectSegLine(wingMask,in_key,segLine,LRside)
     elseif LRside=='R'
         keyPts=[in_key(9,:) ; in_key(4,:)];
     end
-%     
-%     if nnz(wingMask)==0 %If one wing is missing, provide a fake one
-%         fakepolygon=[in_key(3,:); keyPts; in_key(11,:); ];
-%         wingMask=roipoly(wingMask,fakepolygon(:,1),fakepolygon(:,2));
-%     end
     
     [B0,~]=bwboundaries(wingMask);
     edgePt=flip(B0{1},2);

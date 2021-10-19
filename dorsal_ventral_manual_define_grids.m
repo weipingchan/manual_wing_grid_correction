@@ -61,6 +61,7 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
     ventral_key_flip0(:,1)=size(ventral_seg,2)+1-ventral_key(:,1);
     ventral_key_flip=[ventral_key_flip0(4,:);ventral_key_flip0(3,:);ventral_key_flip0(2,:);ventral_key_flip0(1,:);ventral_key_flip0(6,:);ventral_key_flip0(5,:);ventral_key_flip0(9,:);ventral_key_flip0(8,:);ventral_key_flip0(7,:);ventral_key_flip0(11,:);ventral_key_flip0(10,:)];
 
+    %%
     %Create potential intact wing region based on ventral-dorsal mapping
     disp('Begin to create potential wing area based on dosal-ventral sides mapping');
     
@@ -95,7 +96,7 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
     % plot(segLineLH(:,1),segLineLH(:,2),'r.');
     % figure,imshow(wingRH);hold on;
     % plot(segLineRH(:,1),segLineRH(:,2),'r.');
-
+%%
     %Map ventral-side hind wing on dorsal side hind wing
     segLineLH_dorsal=projectSegLine(dorsal_wingLH, dorsal_key,segLineLH,'L');
     segLineRH_dorsal=projectSegLine(dorsal_wingRH, dorsal_key, segLineRH,'R');
@@ -110,7 +111,7 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
 %     figure,imshow((dorsal_seg==3)+(dorsal_seg==4));hold on;
 %     plot(segLineLH_dorsal(:,1),segLineLH_dorsal(:,2),'r.');
 %     plot(segLineRH_dorsal(:,1),segLineRH_dorsal(:,2),'r.');
-
+%%
     %Generate potential mask
     [potentialWingMask_LH_dorsal,nullArea_LH_dorsal]=getPotentialWingMask2(dorsal_wingLH,segLineLH_dorsal,'LH');
     [potentialWingMask_RH_dorsal,nullArea_RH_dorsal]=getPotentialWingMask2(dorsal_wingRH,segLineRH_dorsal,'RH');
@@ -142,7 +143,7 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
     % key points & key points of the mask without ornament
     % {7}=original mask of LH
     % {8}=original mask of RH
-
+%%
     %Save image for inspection
     %Save dorsal side
     inspvisoutname=fullfile(Result_directory,subFolderList{1},[barcode,'_',vdlist{1},flag,'_keys_grids_res-',num2str(2^numberOfIntervalDegree),'x',num2str(2^numberOfIntervalDegree),'.jpg']);
