@@ -1,5 +1,5 @@
 function  segLine=extractSegLineH(wingMask,ventral_key_flip,LRside)
-    %The code was developed by left wing as the template
+    %The code was developed with the left wing as the template
     if LRside=='L'
         keyPts=[ventral_key_flip(7,:) ; ventral_key_flip(1,:)];
     elseif LRside=='R'

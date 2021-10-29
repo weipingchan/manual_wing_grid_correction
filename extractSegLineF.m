@@ -1,5 +1,5 @@
 function  segLine=extractSegLineF(wingMask,dorsal_key,LRside)
-    %The code was developed by left wing as the template
+    %The code was developed with the left wing as the template
     if LRside=='L'
         keyPts=[dorsal_key(7,:) ; dorsal_key(1,:)];
     elseif LRside=='R'

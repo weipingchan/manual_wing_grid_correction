@@ -1,5 +1,5 @@
 function wingGriddeep=generateGrids(seg4Pts,edgePt,numberOfIntervalDegree)
-%Do a basic Grid first: haveing 2^3 * 2^3 grids
+%Do a basic grid first: with 2^3 * 2^3 grids
 numberOfIntervalDegree0=3;
 numberOfInterval0=2^numberOfIntervalDegree0;
 evenIntEdge0=getEvenSpaceForGrid(seg4Pts,edgePt,numberOfIntervalDegree0);

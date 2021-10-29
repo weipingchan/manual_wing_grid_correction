@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Manual define grids based on a folder of promblematic images (jpg format)
+%Manually define grids based on a folder of problematic images (jpg format)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 morph_mat_directory='..\tribal_wing-seg_matrices_Mar2020_final';
 Code_directory='../shape_analysis_v3';
@@ -27,12 +27,12 @@ for matinID=1:length(redo_data)
     end
 end
 
-%Run in a loop for a small number of file
+%Run in a loop for a small number of files
 for barID=1:length(redobarcodelist)
     barcodein=redobarcodelist{barID};
     try
         dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,Result_directory,barcodein,numberOfIntervalDegree);
-        %Move those images having been analyzed to a subdirectory
+        %Move those images that have been analyzed to a subdirectory
         finishedDir='done';
         if ~exist(fullfile(manual_grid_redo_directory,finishedDir), 'dir')
             mkdir(fullfile(manual_grid_redo_directory,finishedDir));
@@ -47,7 +47,7 @@ end
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Manual define grids based on a list of barcode (in txt format)
+%Manually define grids based on a list of barcodes (in txt format)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 morph_mat_directory='..\tribal_wing-seg_matrices_Mar2020_final';
 Code_directory='../shape_analysis_v3';
@@ -67,7 +67,7 @@ barcodelist = textscan(fileID,'%s','delimiter','\n');
 fclose(fileID);
 redobarcodelist=barcodelist{1};
 
-%Run in a loop for a small number of file
+%Run in a loop for a small number of files
 for barID=1:length(redobarcodelist)
     barcodein=redobarcodelist{barID};
     try
@@ -80,7 +80,7 @@ end
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Manual define grids based on a barcode being typed in
+%Manually define grids based on a barcode being typed in
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 morph_mat_directory='..\tribal_wing-seg_matrices_Mar2020_final';
 Code_directory='../shape_analysis_v3';

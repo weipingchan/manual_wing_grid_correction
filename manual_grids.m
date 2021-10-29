@@ -1,18 +1,18 @@
 function gridsParameter=manual_grids(wingLF,wingRF,wingLH,wingRH,in_key,numberOfIntervalDegree)
 
-ornamentRatio=1/350; %the ratio of objects' area to mask area exceeding this value will be defined as an ornament
-[refineAreaLH,regPtLH,reconstructRegPtLH]=refineHindWing2(wingLH,in_key,'L', ornamentRatio); %Left and Right indicated by how the image currently looks
-[refineAreaRH,regPtRH,reconstructRegPtRH]=refineHindWing2(wingRH,in_key,'R', ornamentRatio); %Left and Right indicated by how the image currently looks
+ornamentRatio=1/350; %the ratio of object's area to mask area exceeding this value will be defined as an ornament
+[refineAreaLH,regPtLH,reconstructRegPtLH]=refineHindWing2(wingLH,in_key,'L', ornamentRatio); %Left and right indicated by how the image currently looks
+[refineAreaRH,regPtRH,reconstructRegPtRH]=refineHindWing2(wingRH,in_key,'R', ornamentRatio); %Left and right indicated by how the image currently looks
 
 figinsp=figure('visible', 'off');
 pairFig=imshowpair(wingLH+wingRH,refineAreaLH+refineAreaRH);
 
-% Scripts below are saved for debugging purpose
+% Scripts below are saved for debugging purposes
 % figure,imshowpair(wingLH+wingRH,refineAreaLH+refineAreaRH);hold on;
 % plot(regPtLH(:,1),regPtLH(:,2),'rO');
 % plot(regPtRH(:,1),regPtRH(:,2),'rO');
 
-% %Fore wings
+% %Forewings
 % keyPtLoc=[2,3,7,9,10,11];
 % figure,imshow(wingLF+wingRF);hold on;
 % for keyID=1:length(keyPtLoc)
@@ -43,11 +43,11 @@ new_regPtLH=[newHwingRefPts(1,:) ; newHTipPts(1:2,:)];
 new_regPtRH=[newHwingRefPts(3,:) ; newHTipPts(3:4,:)];
 
 
-%generate grids for fore wings
+%generate grids for forewings
 [seg4PtsLF,wingGridsLF ]=foreWingGrids(wingLF,new_in_key,'L',numberOfIntervalDegree);
 [seg4PtsRF,wingGridsRF ]=foreWingGrids(wingRF,new_in_key,'R',numberOfIntervalDegree);
 
-%generate grids for hind wings
+%generate grids for hindwings
 [outSeg4PtsLH ,wingGridsLH ]=hindWingGrids(refineAreaLH,new_in_key, new_regPtLH,'L',numberOfIntervalDegree);
 [outSeg4PtsRH ,wingGridsRH ]=hindWingGrids(refineAreaRH,new_in_key, new_regPtRH,'R',numberOfIntervalDegree);
 
@@ -62,13 +62,13 @@ gridsParameter{6}={refineAreaRH,new_regPtRH,reconstructRegPtRH};
 gridsParameter{7}=wingLH;
 gridsParameter{8}=wingRH;
 
-% %Scripts below are saved for debugging purpose
+% %Scripts below are saved for debugging purposes
 % %Plot refined regions
 % figure,imshowpair(wingLH+wingRH,refineAreaLH+refineAreaRH);hold on;
 % plot(new_regPtLH(:,1),new_regPtLH(:,2),'rX');plot(new_regPtLH(:,1),new_regPtLH(:,2),'yO');
 % plot(new_regPtRH(:,1),new_regPtRH(:,2),'rX');plot(new_regPtRH(:,1),new_regPtRH(:,2),'yO');
 % 
-% %plot all grids on Fore wings
+% %plot all grids on forewings
 % figure,imshow(wingLF+wingRF);hold on;
 % for i=2:size(wingGridsLF,1)-1
 %     gridPlot=reshape(wingGridsLF(i,:,:),[],2);
@@ -87,7 +87,7 @@ gridsParameter{8}=wingRH;
 %     plot(gridPlot(:,1),gridPlot(:,2),'r');
 % end
 % 
-% %plot all grids on Hind wings
+% %plot all grids on hindwings
 % figure,imshow(wingLH+wingRH);hold on;
 % for i=2:size(wingGridsLH,1)-1
 %     gridPlot=reshape(wingGridsLH(i,:,:),[],2);

@@ -15,7 +15,7 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
     end
 
     %%
-    all_morph_data = dir(fullfile(morph_mat_directory,'*morph-seg.mat')); %read only one layer of directory; '**/*morph-seg.mat': reald all subfolders
+    all_morph_data = dir(fullfile(morph_mat_directory,'*morph-seg.mat')); %read only one layer of directory; '**/*morph-seg.mat': read all subfolders
     all_morph_name0=struct2dataset(all_morph_data);
     all_morph_name=all_morph_name0(:,1).name;
     fileID=find(contains(all_morph_name,[barcodein,'_']));
@@ -63,7 +63,7 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
 
     %%
     %Create potential intact wing region based on ventral-dorsal mapping
-    disp('Begin to create potential wing area based on dosal-ventral sides mapping');
+    disp('Begin to create potential wing area based on dorsal-ventral sides mapping');
     
     %Check all wings
     %If wing is missing, provide a fake one
@@ -85,9 +85,9 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
     segLineLH=extractSegLineH(ventral_flip_wingLH,ventral_key_flip,'L');
     segLineRH=extractSegLineH(ventral_flip_wingRH,ventral_key_flip,'R');
 
-    disp('The fore-hind wing joint lines are extracted from dosal and ventral sides');
+    disp('The fore-hindwing joint lines are extracted from dorsal and ventral sides');
     
-    %Scripts below are saved for debugging purpose
+    %Scripts below are saved for debugging purposes
     % figure,imshow(dorsal_wingLF);hold on;
     % plot(segLineLF(:,1),segLineLF(:,2),'r.');
     % figure,imshow(wingRF);hold on;
@@ -97,13 +97,13 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
     % figure,imshow(wingRH);hold on;
     % plot(segLineRH(:,1),segLineRH(:,2),'r.');
 %%
-    %Map ventral-side hind wing on dorsal side hind wing
+    %Map ventral-side hindwing on dorsal-side hindwing
     segLineLH_dorsal=projectSegLine(dorsal_wingLH, dorsal_key,segLineLH,'L');
     segLineRH_dorsal=projectSegLine(dorsal_wingRH, dorsal_key, segLineRH,'R');
     segLineLF_ventral=projectSegLine(ventral_flip_wingLF, ventral_key_flip,segLineLF,'L');
     segLineRF_ventral=projectSegLine(ventral_flip_wingRF, ventral_key_flip,segLineRF,'R');
 
-%     Scripts below are saved for debugging purpose
+%     Scripts below are saved for debugging purposes
 %     figure,imshow((ventral_seg_flip==1)+(ventral_seg_flip==2));hold on;
 %     plot(segLineLF_ventral(:,1),segLineLF_ventral(:,2),'r.');
 %     plot(segLineRF_ventral(:,1),segLineRF_ventral(:,2),'r.');
@@ -120,18 +120,18 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
 
     % figure,imshowpair(potentialWingMask_LH_dorsal+potentialWingMask_RH_dorsal,nullArea_LH_dorsal+nullArea_RH_dorsal);
     % figure,imshowpair(potentialWingMask_LF_ventral+potentialWingMask_RF_ventral,nullArea_LF_ventral+nullArea_RF_ventral);
-    disp('The potential wing area are estimated');
+    disp('The potential wing area is estimated');
 
     % numberOfIntervalDegree=5; %minimum is 3
-    disp(['The resolution of wing matrix is: ' num2str(2^numberOfIntervalDegree),' x ',num2str(2^numberOfIntervalDegree)]);
+    disp(['The resolution of the wing matrix is: ' num2str(2^numberOfIntervalDegree),' x ',num2str(2^numberOfIntervalDegree)]);
 
     %dorsal image
     gridsParameter_dorsal=manual_grids(dorsal_wingLF,dorsal_wingRF,potentialWingMask_LH_dorsal,potentialWingMask_RH_dorsal,dorsal_key,numberOfIntervalDegree);
-    disp('Grids of dorsal wing is generated');
+    disp('Grids of dorsal wings are generated');
 
     %ventral image
     gridsParameter_ventral=manual_grids(potentialWingMask_LF_ventral,potentialWingMask_RF_ventral,ventral_flip_wingLH,ventral_flip_wingRH,ventral_key_flip,numberOfIntervalDegree);
-    disp('Grids of ventral wing is generated');
+    disp('Grids of ventral wings are generated');
 
     % {1}={seg4PtsLF,wingGridsLF }; %4 key points & grids
     % {2}={seg4PtsRF,wingGridsRF}; %4 key points & grids
@@ -160,14 +160,14 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
     %saveas(figmask, maskoutname);
     export_fig(figinsp,inspvisoutname, '-jpg','-r200');
     close(figinsp);
-    disp('Two images showing keys ang grids of both sides of a specimen has been saved.');
+    disp('Two images showing keys ang grids of both sides of a specimen have been saved.');
 
 
-    %Save all result
+    %Save all results
     manualGrids={gridsParameter_dorsal,gridsParameter_ventral}; %All parameters and grids
     matoutname=fullfile(Result_directory,subFolderList{2},[barcode,'_res-',num2str(2^numberOfIntervalDegree),'x',num2str(2^numberOfIntervalDegree),'_d-v_manual_grids.mat']);
     save(matoutname,'manualGrids'); %save the specimen matrix
     disp(['################################']);
-    disp(['Manual grids of [',barcode,'_res-',num2str(2^numberOfIntervalDegree),'x',num2str(2^numberOfIntervalDegree),'] has been saved' ]);
+    disp(['Manual grids of [',barcode,'_res-',num2str(2^numberOfIntervalDegree),'x',num2str(2^numberOfIntervalDegree),'] have been saved' ]);
     disp(['################################']);
 end

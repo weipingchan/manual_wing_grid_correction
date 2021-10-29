@@ -1,5 +1,5 @@
 function [potentialWingMask,nullArea]=getPotentialWingMask2(wingMask,segLine,part)
-%Create at mask for null regions on a wing. For example, a hindwing is overlapped by a forewing at dorsal side, so there is a region without reflectance data, called null region
+%Create a mask for null regions on a wing. For example, a hindwing is overlapped by a forewing at dorsal side, so there is a region without reflectance data, called null region
 %The reconstructed full wing piece named potential wing
      [B0,~]=bwboundaries(wingMask);
     edgePt=flip(B0{1},2);
