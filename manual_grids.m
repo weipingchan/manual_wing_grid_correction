@@ -1,4 +1,4 @@
-function gridsParameter=manual_grids(wingLF,wingRF,wingLH,wingRH,in_key,numberOfIntervalDegree)
+function [gridsParameter, bflag]=manual_grids(wingLF,wingRF,wingLH,wingRH,in_key,numberOfIntervalDegree)
 
 ornamentRatio=1/350; %the ratio of object's area to mask area exceeding this value will be defined as an ornament
 [refineAreaLH,regPtLH,reconstructRegPtLH]=refineHindWing2(wingLH,in_key,'L', ornamentRatio); %Left and right indicated by how the image currently looks
@@ -20,22 +20,32 @@ pairFig=imshowpair(wingLH+wingRH,refineAreaLH+refineAreaRH);
 % end
 
 %Manually define those key points
+bflagF=0;
+bflagH=0;
 %Forewings
 wingFPts=[in_key(2,:) ; in_key(7,:) ; in_key(3,:) ; in_key(9,:)]; %Better not to adjust
 wingFPtNameList= {'L-F&B', 'L-F&H', 'R-F&B', 'R-F&H'};
 tipFPts=[in_key(10,:) ; in_key(11,:)];
 tipFNameList={'tip-LF','tip-RF'};
-[newFTipPts, newFwingRefPts]=manuallyDefineKeyRefPts3(wingLF+wingRF, wingLF+wingRF, tipFPts, tipFNameList, wingFPts, wingFPtNameList);
+[newFTipPts, newFwingRefPts, bflagF]=manuallyDefineKeyRefPts3(wingLF+wingRF, wingLF+wingRF, tipFPts, tipFNameList, wingFPts, wingFPtNameList);
 
 %Hindwings
 wingHPts=[regPtLH(1,:) ; in_key(6,:) ; regPtRH(1,:) ; in_key(5,:)];
 wingHPtNameList={'L-Hjoint', 'L-H&B',  'R-Hjoint', 'L-H&B'};
 tipHPts=[regPtLH(2:3,:) ; regPtRH(2:3,:)];
 tipHNameList={'tip-LH', 'side-LH', 'tip-RH', 'side-RH'};
-[newHTipPts, newHwingRefPts]=manuallyDefineKeyRefPts3(refineAreaLH+refineAreaRH, pairFig.CData, tipHPts, tipHNameList, wingHPts, wingHPtNameList);
+[newHTipPts, newHwingRefPts, bflagH]=manuallyDefineKeyRefPts3(refineAreaLH+refineAreaRH, pairFig.CData, tipHPts, tipHNameList, wingHPts, wingHPtNameList);
 
 close(figinsp);
 
+if bflagF==1 || bflagH==1
+    bflag=1;
+else
+    bflag=0;
+end
+
+
+if bflag==0
 new_in_key=[in_key(1,:) ; newFwingRefPts(1,:) ; newFwingRefPts(3,:) ; in_key(4,:) ; ...
     newHwingRefPts(4,:) ; newHwingRefPts(2,:) ; newFwingRefPts(2,:) ; in_key(8,:) ; newFwingRefPts(4,:) ; newFTipPts(1,:) ; newFTipPts(2,:)];
 
@@ -105,4 +115,7 @@ gridsParameter{8}=wingRH;
 %     gridPlot=reshape(wingGridsRH(:,j,:),[],2);
 %     plot(gridPlot(:,1),gridPlot(:,2),'r');
 % end
+else
+    gridsParameter=cell(0,6);
+end
 end

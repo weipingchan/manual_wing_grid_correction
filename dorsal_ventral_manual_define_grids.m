@@ -1,4 +1,4 @@
-function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,Result_directory,barcodein,numberOfIntervalDegree)
+function bflag=dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,Result_directory,barcodein,numberOfIntervalDegree)
     addpath(genpath(Code_directory)) %Add the library to the path
     vdlist={'dorsal','ventral'};
     subFolderList={'inspect_manual_grids','spp_manual_grid_parameters'};
@@ -126,13 +126,25 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
     disp(['The resolution of the wing matrix is: ' num2str(2^numberOfIntervalDegree),' x ',num2str(2^numberOfIntervalDegree)]);
 
     %dorsal image
-    gridsParameter_dorsal=manual_grids(dorsal_wingLF,dorsal_wingRF,potentialWingMask_LH_dorsal,potentialWingMask_RH_dorsal,dorsal_key,numberOfIntervalDegree);
-    disp('Grids of dorsal wings are generated');
-
-    %ventral image
-    gridsParameter_ventral=manual_grids(potentialWingMask_LF_ventral,potentialWingMask_RF_ventral,ventral_flip_wingLH,ventral_flip_wingRH,ventral_key_flip,numberOfIntervalDegree);
-    disp('Grids of ventral wings are generated');
-
+    [gridsParameter_dorsal, bflagD]=manual_grids(dorsal_wingLF,dorsal_wingRF,potentialWingMask_LH_dorsal,potentialWingMask_RH_dorsal,dorsal_key,numberOfIntervalDegree);
+    if bflagD==1
+        bflag=1;
+    else
+        bflag=0;
+        disp('Grids of dorsal wings are generated');
+    end
+    
+    if bflag==0
+        %ventral image
+        [gridsParameter_ventral, bflagV]=manual_grids(potentialWingMask_LF_ventral,potentialWingMask_RF_ventral,ventral_flip_wingLH,ventral_flip_wingRH,ventral_key_flip,numberOfIntervalDegree);
+        
+        if bflagV==1
+            bflag=1;
+        else
+            bflag=0;
+            disp('Grids of ventral wings are generated');
+        end
+    end
     % {1}={seg4PtsLF,wingGridsLF }; %4 key points & grids
     % {2}={seg4PtsRF,wingGridsRF}; %4 key points & grids
     % {3}={outSeg4PtsLH ,wingGridsLH}; %4 key points & grids
@@ -144,6 +156,7 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
     % {7}=original mask of LH
     % {8}=original mask of RH
 %%
+if bflag==0
     %Save image for inspection
     %Save dorsal side
     inspvisoutname=fullfile(Result_directory,subFolderList{1},[barcode,'_',vdlist{1},flag,'_keys_grids_res-',num2str(2^numberOfIntervalDegree),'x',num2str(2^numberOfIntervalDegree),'.jpg']);
@@ -170,4 +183,5 @@ function dorsal_ventral_manual_define_grids(morph_mat_directory,Code_directory,R
     disp(['################################']);
     disp(['Manual grids of [',barcode,'_res-',num2str(2^numberOfIntervalDegree),'x',num2str(2^numberOfIntervalDegree),'] have been saved' ]);
     disp(['################################']);
+end
 end

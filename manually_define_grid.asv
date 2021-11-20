@@ -1,33 +1,4 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%General instruction
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Plot order is as follows:
-%%Forewings
-%Left corner dividing forewing & body
-%Left corner dividing fore & hindwings
-%Right corner dividing forewing & body
-%Right corner dividing fore & hindwings
-%Left forewing tip
-%Right forewing tip
-
-%%Hindwings
-%Left hindwing joint
-%Left corner dividing hindwing & body
-%Right hindwing joint
-%Right corner dividing hindwing & body
-%Left hindwing tip
-%Left hindwing side
-%Right hindwing tip
-%Right hindwing side
-
-%Press Enter to confirm using the point showing on the screen
-%Press 'r' to redo the manual process
-%Press 'f' to force-exit the entire manual process
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%Three different modes are provided
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Manually define grids based on a folder of problematic images (jpg format)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -36,6 +7,22 @@ Code_directory='../shape_analysis_v3';
 manual_grid_redo_directory='..\tribal_level_wing-grids_inspection\manual';
 numberOfIntervalDegree =5; %minimum is 3
 %%%%%%%%%%%%%%%%%%%%Specify only above%%%%%%%%%%%%%%%%%%%%
+%Plot order is as follows:
+wingFPtNameList= {'L-F&B', 'L-F&H', 'R-F&B', 'R-F&H'};
+tipFNameList={'tip-LF','tip-RF'};
+%Left corner dividing fore & hindwings
+%Left corner dividing forewing & body
+%Right corner dividing forewing & body
+%Right corner dividing fore & hindwings
+%Right corner dividing hindwing & body
+%Left corner dividing hindwing & body
+%Left forewing tip
+%Right forewing tip
+
+%Press Enter to confirm using the point showing on the screen
+%Press 'r' to redo the manual process
+%Press 'f' to force-exit the entire manual process
+
 % Turn off this warning "Warning: Image is too big to fit on screen; displaying at 33% "
 % To set the warning state, you must first know the message identifier for the one warning you want to enable. 
 warning('off', 'Images:initSize:adjustingMag');
@@ -73,6 +60,7 @@ for barID=1:length(redobarcodelist)
         disp(['No. [ ', num2str(barID), '] cannnot be processed.']);
     end
 end
+
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

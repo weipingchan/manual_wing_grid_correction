@@ -1,4 +1,4 @@
-function [newTipList,newRefList]=manuallyDefineKeyRefPts3(ref, refShow, tipPts,tipList,refPts,ptNameList)
+function [newTipList,newRefList, bflag]=manuallyDefineKeyRefPts3(ref, refShow, tipPts,tipList,refPts,ptNameList)
     %     {'Left corner dividing fore & hindwings','Left corner dividing forewing & body','Right corner dividing forewing & body',...
     %         'Right corner dividing fore & hindwings','Right corner dividing hindwing & body','Left corner dividing hindwing & body'};
     [B0,~]=bwboundaries(ref);
@@ -41,9 +41,9 @@ function [newTipList,newRefList]=manuallyDefineKeyRefPts3(ref, refShow, tipPts,t
 
             if returnValue==13 %Press Enter to confirm using this box for adjusting
                 break
-%             elseif returnValue==102 %Press 'f' to force exit the entire manual process
-%                 bflag=1;
-%                 break
+            elseif returnValue==102 %Press 'f' to force exit the entire manual process
+                bflag=1;
+                break
             elseif returnValue==114 %Press 'r' to redo the manual process
                 bflag=2;
                 break
@@ -70,8 +70,8 @@ function [newTipList,newRefList]=manuallyDefineKeyRefPts3(ref, refShow, tipPts,t
                 break
             end
             hid=hid+1;
-%         elseif  bflag==1
-%             break
+        elseif  bflag==1
+            break
         elseif bflag==2
             close(refimg);
             refimg=figure;
