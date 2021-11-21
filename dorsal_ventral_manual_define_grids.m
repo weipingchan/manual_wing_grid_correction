@@ -90,11 +90,11 @@ function bflag=dorsal_ventral_manual_define_grids(morph_mat_directory,Code_direc
     %Scripts below are saved for debugging purposes
     % figure,imshow(dorsal_wingLF);hold on;
     % plot(segLineLF(:,1),segLineLF(:,2),'r.');
-    % figure,imshow(wingRF);hold on;
+    % figure,imshow(dorsal_wingRF);hold on;
     % plot(segLineRF(:,1),segLineRF(:,2),'r.');
-    % figure,imshow(wingLH);hold on;
+    % figure,imshow(dorsal_wingLH);hold on;
     % plot(segLineLH(:,1),segLineLH(:,2),'r.');
-    % figure,imshow(wingRH);hold on;
+    % figure,imshow(dorsal_wingRH);hold on;
     % plot(segLineRH(:,1),segLineRH(:,2),'r.');
 %%
     %Map ventral-side hindwing on dorsal-side hindwing
