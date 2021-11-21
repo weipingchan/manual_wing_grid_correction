@@ -30,6 +30,9 @@ if length(intersectX)<2
     [intersectX,intersectY]= polyxpoly(orthoSeg(:,1)-1,orthoSeg(:,2)-1,edgePt(:,2),edgePt(:,1)); %move the line a little bit to derive two intersection points
 end
 wingCorner=findFarestPt([intersectX,intersectY],shoulderMIdPt);
+if wingCorner(2)<shoulderMIdPt(2) %error proofing for curved forewings
+    wingCorner=findFarestPt([intersectX(intersectY>shoulderMIdPt(2)), intersectY(intersectY>shoulderMIdPt(2))], shoulderMIdPt);
+end
 
 if LRside=='L'
     inSeg4Pts=[lower_wing_body_join ; keyPts(1,:); keyPts(2,:) ; wingCorner];
