@@ -3,6 +3,7 @@ function [refineArea,regPtH,reconstructRegPtH]=refineHindWing2(wingMask,in_key,L
 
     %Remove ornament
     amountErode=round(nnz(wingMask)/3000);
+    if amountErode>200; amountErode=200; end %A special setting for jumbo specimens
     wingreduce=imdilate(bwareafilt(imerode(wingMask,strel('disk',amountErode)),1),strel('disk',amountErode));
 
     %make a fully closed shape
@@ -101,24 +102,27 @@ function [refineArea,regPtH,reconstructRegPtH]=refineHindWing2(wingMask,in_key,L
                 end
         end
         retainCandidates=retainIdx(retainIdx(:,3)==1,:);
-%         retainIdx2=retainIdx;
-        decisionIdx=[];
-        for retID=1:size(retainCandidates,1)
-            subIdx=retainIdx(retainIdx(:,1)==retainCandidates(retID,1),:);
-            decisionIdx0=[subIdx(1,1), subIdx(subIdx(:,2)==max(subIdx(:,2)),3)]; %Keep or not determined by the elements with the largest area
-            if size(decisionIdx0,1)>1,  decisionIdx0= decisionIdx0(1,:);, end; %To prevent 2 candidates
-            decisionIdx=[decisionIdx ; decisionIdx0];
-        end
-        
-        if ~isempty(decisionIdx)
-        retainIdxf=decisionIdx(decisionIdx(:,2)==1,1);
-            if ~isempty(retainIdxf)
-                retainMask=ismember(edL,retainIdxf);
-                keepArea=keepArea | retainMask;
+
+        try
+            decisionIdx=[];
+            for retID=1:size(retainCandidates,1)
+                subIdx=retainIdx(retainIdx(:,1)==retainCandidates(retID,1),:);
+                subIdx2=subIdx(:,2)==max(subIdx(:,2)); %To prevent 2 maximum
+                decisionIdx0=[subIdx(1,1), subIdx(subIdx2(1), 3)]; %Keep or not determined by the elements with the largest area
+                if size(decisionIdx0,1)>1,  decisionIdx0= decisionIdx0(1,:);, end; %To prevent 2 candidates
+                decisionIdx=[decisionIdx ; decisionIdx0];
             end
+
+            if ~isempty(decisionIdx)
+                    retainIdxf=decisionIdx(decisionIdx(:,2)==1,1);
+                    if ~isempty(retainIdxf)
+                        retainMask=ismember(edL,retainIdxf);
+                        keepArea=keepArea | retainMask;
+                    end
+            end
+        catch
         end
     end
-    
     
     for edID=1:length(edB)
         obj=flip(edB{edID},2);
