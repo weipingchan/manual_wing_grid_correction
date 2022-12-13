@@ -5,6 +5,9 @@ Please run 'manually_define_grid.m' to begin the correction
 Please find the article describing the application of this script below (DOI: 10.1038/s42003-022-04282-z):
 (https://www.nature.com/articles/s42003-022-04282-z)
 
+Exemplar datasets can be found in this repository:
+(https://doi.org/10.5061/dryad.37pvmcvp5)
+
 Please find the link for the corresponding protocol:
 (https://www.protocols.io/private/F3292DF1FE0211EB878B0A58A9FEAC02)
 
